@@ -95,6 +95,20 @@ JBase.ArrayExplicted.prototype.getLength = function (dimension) {
 JBase.ArrayExplicted.prototype.getDimensions = function () {
 	return this.seize_arr.length;
 }
+
+//// Получить значение по указаным индексам (указываются как arguments)    
+JBase.ArrayExplicted.prototype.get = function () {
+    if (arguments.length === 0) {
+        throw new Error("Для доступа к нужной ячейке массива нужно укахать хотя-бы один индекс");
+    }
+    var entries = Array.prototype.slice.call(arguments),
+        res = this.array;
+    for (var i = 0; i < entries.length; i++) {
+        res = res[entries[i]];
+    }
+    return res;
+}
+
 //#############################################################################################################################################
 
 // Операции для перевода целых значений в биполярные и обратно, а так же для операций над биполярными значениями
